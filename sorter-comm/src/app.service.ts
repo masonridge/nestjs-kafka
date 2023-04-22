@@ -15,4 +15,10 @@ export class AppService {
       new LabelScannedEvent(labelId, sku, scannerId),
     );
   }
+  getDivert({ labelId, sku, scannerId }: CreateScanLabel) {
+    this.sortEngineClient.send(
+      'get_dest',
+      new LabelScannedEvent(labelId, sku, scannerId),
+    );
+  }
 }

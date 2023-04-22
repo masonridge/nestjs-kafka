@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "sorter-comm"
+		},
+		{
+			"path": "host-comm"
+		},
+		{
+			"path": "sort-engine"
+		}
+	],
+	"settings": {}
+}

@@ -1,5 +1,9 @@
 import { Controller, Get, Inject, OnModuleInit } from '@nestjs/common';
-import { ClientKafka, EventPattern } from '@nestjs/microservices';
+import {
+  ClientKafka,
+  EventPattern,
+  MessagePattern,
+} from '@nestjs/microservices';
 import { AppService } from './app.service';
 
 @Controller()
@@ -20,5 +24,9 @@ export class AppController implements OnModuleInit {
   @EventPattern('label_scanned')
   handleLabelScanned(data: any) {
     this.appService.handleOrderCreated(data);
+  }
+  @MessagePattern('get_dest')
+  async handleGetDest(data: any) {
+    return await this.appService.handleGetDest(data);
   }
 }

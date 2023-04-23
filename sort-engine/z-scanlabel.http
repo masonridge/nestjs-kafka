@@ -7,3 +7,12 @@ content-type: application/json
     "scannerId": 102,
     "sku": "SKU001"
 }
+###
+POST http://localhost:3000/divert HTTP/1.1
+content-type: application/json
+
+{
+    "labelId": "LBL003",
+    "scannerId": 102,
+    "sku": "SKU001"
+}

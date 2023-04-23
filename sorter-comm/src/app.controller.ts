@@ -1,12 +1,15 @@
 import { OnModuleInit } from '@nestjs/common';
 import { Inject } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { AppService } from './app.service';
+import { ColoredConsoleLogger } from './colored-console.logger';
 import { CreateScanLabel } from './dto/create-scan-label.dto';
 
 @Controller()
 export class AppController implements OnModuleInit {
+  private readonly logger = new ColoredConsoleLogger(AppController.name, true);
   constructor(
     private readonly appService: AppService,
     @Inject('SORT_ENGINE_SERVICE') private readonly hostClient: ClientKafka,
@@ -23,7 +26,7 @@ export class AppController implements OnModuleInit {
   }
   @Post('divert')
   getDivert(@Body() createScanLabel: CreateScanLabel) {
-    console.log(createScanLabel);
+    this.logger.colorlog(`Received scan ${JSON.stringify(createScanLabel)}`);
 
     return this.appService.getDivert(createScanLabel);
   }
